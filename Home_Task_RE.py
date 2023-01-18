@@ -1,11 +1,13 @@
+__version__ = '1.0.0'
+
 import csv
 import re
 
 from itertools import groupby
 
-# читаем адресную книгу в формате CSV в список contacts_list
-# Это будет функция re
-with open('phonebook_raw.csv', 'r') as f:
+# читаем адресную книгу в формате csv в список contacts_list
+# Программа работает с исходным файлом csv в кодировке Windows cp1251
+with open('phonebook_raw.csv', 'r', encoding='cp1251') as f:
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
     
@@ -17,7 +19,6 @@ with open('phonebook_raw.csv', 'r') as f:
         contacts_list[i] = result # Замена i-го элемента в списке на валидированный
         i += 1
 
-# Это будет функция записи
 with open('phonebook.csv', 'w') as f:
     datawriter = csv.writer(f, delimiter=';')
     datawriter.writerow(contacts_list.pop(0)) # хедер
@@ -26,7 +27,7 @@ with open('phonebook.csv', 'w') as f:
 out_list = [] # Выходной список для выгрузки в .csv
 list_keys_values = [] # Список ключ:значение для группировки и сортировки
 
-# Это будет функция распределения значений ФИО по полям 'lastname', 'firstname', 'surname'
+# Распределение значений ФИО по полям 'lastname', 'firstname', 'surname'
 with open('phonebook.csv', 'r') as f:
     reader = csv.DictReader(f, delimiter=';')
     dict_keys = reader.fieldnames # Список ключей
