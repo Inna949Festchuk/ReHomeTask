@@ -1,4 +1,4 @@
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 import csv
 import re
@@ -6,8 +6,7 @@ import re
 from itertools import groupby
 
 # читаем адресную книгу в формате csv в список contacts_list
-# Программа работает с исходным файлом csv в кодировке Windows cp1251
-with open('phonebook_raw.csv', 'r', encoding='cp1251') as f:
+with open('phonebook_raw.csv', 'r', encoding='utf-8') as f:
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
     
@@ -20,7 +19,7 @@ with open('phonebook_raw.csv', 'r', encoding='cp1251') as f:
         i += 1
 
 with open('phonebook.csv', 'w') as f:
-    datawriter = csv.writer(f, delimiter=';')
+    datawriter = csv.writer(f, delimiter=',')
     datawriter.writerow(contacts_list.pop(0)) # хедер
     datawriter.writerows(contacts_list) 
 
@@ -29,7 +28,7 @@ list_keys_values = [] # Список ключ:значение для групп
 
 # Распределение значений ФИО по полям 'lastname', 'firstname', 'surname'
 with open('phonebook.csv', 'r') as f:
-    reader = csv.DictReader(f, delimiter=';')
+    reader = csv.DictReader(f, delimiter=',')
     dict_keys = reader.fieldnames # Список ключей
     for row in reader: # получаем строку исходного словаря
         for n in range(0,2): # разделяем строку на Ф,И,О
@@ -51,14 +50,16 @@ key = lambda x:x[0][1]
 gr = groupby(sorted(list_keys_values, key=key), key=key)
 # Получаем группированные значения
 s = [[i for i in el[1]] for el in gr]
+
 # Объединяем группы на основе механизма пересечение множеств
 j = 0
-list_or = [] 
+
+list_or = []
 while j < len(s):
     if len(s[j]) != 1:
-        list_or.append(set(s[j][0]) | set(s[j][1]))
+        list_or.append(set((s[j])[0]) | set((s[j])[1]))
     else:
-        list_or.append(set(s[j][0]))                
+        list_or.append(set((s[j][0])))               
     j += 1
 
 jj = 0
