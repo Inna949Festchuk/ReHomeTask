@@ -5,14 +5,14 @@ import re
 
 from itertools import groupby
 
-# читаем адресную книгу в формате CSV в список contacts_list
-
-#text = 'Я не, совсем верно,'
-#text_spl = text.split('\n')
-#for word in text_spl:
+# Проба пера
+# text = 'Я не, совсем верно,'
+# text_spl = text.split('\n')
+# for word in text_spl:
 #    word = word.strip(',')
 #    print(word)
 
+# Прочитать адресную книгу в формате CSV
 # Удалить запятые в конце строк
 file = open('phonebook_raw.csv', 'r')
 text_list = file.read().split('\n')
