@@ -25,7 +25,6 @@ with open('phonebook.csv', 'w') as f:
     datawriter = csv.writer(f, delimiter=',')
     datawriter.writerow(contacts_list.pop(0)) # хедер
     datawriter.writerows(contacts_list) 
-
 out_list = [] # Выходной список для выгрузки в .csv
 list_keys_values = [] # Список ключ:значение для группировки и сортировки
 
