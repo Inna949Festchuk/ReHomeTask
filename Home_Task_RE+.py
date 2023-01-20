@@ -4,7 +4,6 @@ import re
 from itertools import groupby
 
 # читаем адресную книгу в формате CSV в список contacts_list
-# Это будет функция re
 
 #text = 'Я не, совсем верно,'
 #text_spl = text.split('\n')
@@ -20,7 +19,7 @@ for text_str in text_list:
     text_str = text_str.strip(',')
     fix_text_list.append([text_str])
     
-with open('phonebook.csv', 'w') as f:
+with open('phonebook.csv', 'w', encoding='utf-8') as f:
     datawriter = csv.writer(f, delimiter=';')
     datawriter.writerow(fix_text_list.pop(0)) # хедер
     datawriter.writerows(fix_text_list)
@@ -28,7 +27,7 @@ file.close()
 
 # Отредактировать номер телефона
 with open('phonebook.csv', 'r', encoding='utf-8') as f:
-    rows = csv.reader(f, delimiter=",")
+    rows = csv.reader(f, delimiter=',')
     contacts_list = list(rows)
     i = 0
     for text in contacts_list:
