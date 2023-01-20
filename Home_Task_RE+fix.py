@@ -15,7 +15,7 @@ with open('phonebook_raw.csv', 'r', encoding='utf-8') as f:
 
 with open('phonebook.csv', 'w') as f:
     datawriter = csv.writer(f, delimiter=';')
-    # datawriter.writerow(fix_text_list.pop(0)) # хедер
+    datawriter.writerow(fix_text_list.pop(0)) # хедер
     datawriter.writerows(fix_text_list)
 
 # Отредактировать номер телефона
