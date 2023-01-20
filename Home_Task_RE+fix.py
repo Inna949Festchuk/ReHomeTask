@@ -15,7 +15,7 @@ with open('phonebook_raw.csv', 'r', encoding='utf-8') as f:
 
 with open('phonebook.csv', 'w') as f:
     datawriter = csv.writer(f, delimiter=';')
-    datawriter.writerow(fix_text_list.pop(0)) # хедер
+    # datawriter.writerow(fix_text_list.pop(0)) # хедер
     datawriter.writerows(fix_text_list)
 
 # Отредактировать номер телефона
@@ -47,7 +47,7 @@ with open('phonebook.csv', 'r') as f:
             contacts = row.get(dict_keys[n]) # n-ый элемент из строки row исходного словаря
             split_contacts = contacts.split(' ') # разделдяем n-е элементы
             for element_string in split_contacts: # Проходим строку по разделенным элементам
-                if split_contacts.index(element_string) != '': # Для не отсутствующих индексов получаем индекс элемента
+                if split_contacts.index(element_string) != ' ': # Для не отсутствующих индексов получаем индекс элемента
                     row.update({dict_keys[n:][i]: element_string}) # Добавляем элементы в исходный словарь
                 i += 1
         l_s = dict(row).items() # Получаем пары ключ:значение обработанного исходного словаря
