@@ -26,7 +26,7 @@ with open('phonebook.csv', 'w', encoding='utf-8') as f:
 file.close()    
 
 # Отредактировать номер телефона
-with open('phonebook.csv', 'r', encoding='utf-8') as f:
+with open('phonebook.csv', 'r', encoding="utf-8") as f:
     rows = csv.reader(f, delimiter=',')
     contacts_list = list(rows)
     i = 0
@@ -91,7 +91,7 @@ with open('phonebook.csv', 'r') as f:
         jj += 1
     print(out_list)
 
-with open('phonebook.csv', 'w') as f:
+with open('phonebook.csv', 'w+') as f:
     datawriter = csv.writer(f, delimiter=',')
     datawriter.writerow(reader.fieldnames)
     datawriter.writerows(out_list)
