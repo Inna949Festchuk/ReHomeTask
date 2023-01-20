@@ -13,7 +13,7 @@ from itertools import groupby
 #    word = word.strip(',')
 #    print(word)
 
-# Удалить запятые вконце строк
+# Удалить запятые в конце строк
 file = open('phonebook_raw.csv', 'r')
 text_list = file.read().split('\n')
 fix_text_list = []
