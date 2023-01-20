@@ -5,30 +5,21 @@ import re
 
 from itertools import groupby
 
-# Проба пера
-# text = 'Я не, совсем верно,'
-# text_spl = text.split('\n')
-# for word in text_spl:
-#    word = word.strip(',')
-#    print(word)
+with open('phonebook_raw.csv', 'r', encoding='utf-8') as f:
+    text_list = f.read()
+    text_list = text_list.split('\n')
+    fix_text_list = []
+    for text_str in text_list:
+        text_str = text_str.strip(',')
+        fix_text_list.append([text_str])
 
-# Прочитать адресную книгу в формате CSV
-# Удалить запятые в конце строк
-file = open('phonebook_raw.csv', 'r')
-text_list = file.read().split('\n')
-fix_text_list = []
-for text_str in text_list:
-    text_str = text_str.strip(',')
-    fix_text_list.append([text_str])
-    
-with open('phonebook.csv', 'w', encoding='utf-8') as f:
+with open('phonebook.csv', 'w') as f:
     datawriter = csv.writer(f, delimiter=';')
     datawriter.writerow(fix_text_list.pop(0)) # хедер
     datawriter.writerows(fix_text_list)
-file.close()    
 
 # Отредактировать номер телефона
-with open('phonebook.csv', 'r', encoding="utf-8") as f:
+with open('phonebook.csv', 'r') as f:
     rows = csv.reader(f, delimiter=',')
     contacts_list = list(rows)
     i = 0
@@ -56,8 +47,8 @@ with open('phonebook.csv', 'r') as f:
             contacts = row.get(dict_keys[n]) # n-ый элемент из строки row исходного словаря
             split_contacts = contacts.split(' ') # разделдяем n-е элементы
             for element_string in split_contacts: # Проходим строку по разделенным элементам
-                #if split_contacts.index(element_string) != '': # Для не отсутствующих индексов получаем индекс элемента
-                row.update({dict_keys[n:][i]: element_string}) # Добавляем элементы в исходный словарь
+                if split_contacts.index(element_string) != '': # Для не отсутствующих индексов получаем индекс элемента
+                    row.update({dict_keys[n:][i]: element_string}) # Добавляем элементы в исходный словарь
                 i += 1
         l_s = dict(row).items() # Получаем пары ключ:значение обработанного исходного словаря
         list_keys_values.append(list(l_s)) # И передаем их в список
@@ -96,7 +87,4 @@ with open('phonebook.csv', 'w+') as f:
     datawriter.writerow(reader.fieldnames)
     datawriter.writerows(out_list)
 
-
-        
-   
 
