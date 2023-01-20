@@ -9,10 +9,7 @@ from itertools import groupby
 with open('phonebook_raw.csv', 'r', encoding='utf-8') as f:
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
-    for row in rows:
-        row[i].rstrip(',')
-        i =+ 1
-        print(row)     
+       
     i = 0
     for text in contacts_list:
         pattern = r'(\+7|8)?\s*\(?(\d{3})\)?[\s*-]?(\d{3})[\s*-]?(\d{2})[\s*-]?(\d{2})(\s*)\(?(доб\.?)?\s*(\d*)?\)?'
