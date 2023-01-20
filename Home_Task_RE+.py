@@ -93,7 +93,7 @@ with open('phonebook.csv', 'r') as f:
     print(out_list)
 
 with open('phonebook.csv', 'w') as f:
-    datawriter = csv.writer(f, delimiter=';')
+    datawriter = csv.writer(f, delimiter=',')
     datawriter.writerow(reader.fieldnames)
     datawriter.writerows(out_list)
 
