@@ -1,3 +1,5 @@
+__version__ = '1.0.2'
+
 import csv
 import re
 
@@ -42,10 +44,9 @@ with open('phonebook.csv', 'w') as f:
     datawriter.writerow(contacts_list.pop(0)) # хедер
     datawriter.writerows(contacts_list) 
 
+# Распределить значения ФИО по полям 'lastname', 'firstname', 'surname'
 out_list = [] # Выходной список для выгрузки в .csv
 list_keys_values = [] # Список ключ:значение для группировки и сортировки
-
-# Распределить значения ФИО по полям 'lastname', 'firstname', 'surname'
 with open('phonebook.csv', 'r') as f:
     reader = csv.DictReader(f, delimiter=',')
     dict_keys = reader.fieldnames # Список ключей
@@ -58,7 +59,6 @@ with open('phonebook.csv', 'r') as f:
                 #if split_contacts.index(element_string) != '': # Для не отсутствующих индексов получаем индекс элемента
                 row.update({dict_keys[n:][i]: element_string}) # Добавляем элементы в исходный словарь
                 i += 1
-
         l_s = dict(row).items() # Получаем пары ключ:значение обработанного исходного словаря
         list_keys_values.append(list(l_s)) # И передаем их в список
 
