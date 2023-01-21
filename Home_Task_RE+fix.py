@@ -12,10 +12,10 @@ with open('phonebook_raw.csv', 'r', encoding='utf-8') as f:
     for text_str in text_list:
         text_str = text_str.strip(',')
         fix_text_list.append([text_str])
-
-with open('phonebook.csv', 'w') as f:
+print(fix_text_list)
+with open('phonebook.csv', 'wt') as f:
     datawriter = csv.writer(f, delimiter=';')
-    datawriter.writerow(fix_text_list.pop(0)) # хедер
+    # datawriter.writerow(fix_text_list.pop(0)) # хедер
     datawriter.writerows(fix_text_list)
 
 # Отредактировать номер телефона
