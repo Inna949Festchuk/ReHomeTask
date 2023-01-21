@@ -33,7 +33,7 @@ def fix(in_path:str, out_path:str) -> str:
     # print(fix_text_list)
 
     out_list = [] # Выходной список для выгрузки в .csv
-    list_keys_values = [] # Список ключ:значение для группировки и сортировки
+    list_keys_values = [] # Список [(ключ:значение)] для группировки и сортировки
 
     # Распределить значения ФИО по полям 'lastname', 'firstname', 'surname'
     dict_keys = fix_text_list[0] # Список ключей
