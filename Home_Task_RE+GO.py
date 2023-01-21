@@ -20,7 +20,7 @@ for text_str in text_list:
     el_str  = text_str.strip('')
     #el_str  = ''.join(el_str)
     fix_text_list.append(el_str.split(','))
-#print(fix_text_list)
+# print(fix_text_list)
 
 # Отредактировать номер телефона
 i = 0
@@ -30,7 +30,7 @@ for text in fix_text_list:
     result = list(map(lambda z: re.sub(pattern, sub_, z), text)) # валидация списка
     fix_text_list[i] = result # Замена i-го элемента в списке на валидированный
     i += 1
-#print(fix_text_list)
+# print(fix_text_list)
 
 out_list = [] # Выходной список для выгрузки в .csv
 list_keys_values = [] # Список ключ:значение для группировки и сортировки
@@ -38,7 +38,7 @@ list_keys_values = [] # Список ключ:значение для групп
 # Распределить значения ФИО по полям 'lastname', 'firstname', 'surname'
 dict_keys = fix_text_list[0] # Список ключей
 dict_reader = dict.fromkeys(fix_text_list[0])
-for m in range(1, len(fix_text_list)-1):
+for m in range(1, len(fix_text_list)):
     for dict_key in dict_keys:
         dict_reader.update({dict_key:fix_text_list[m][dict_keys.index(dict_key)]})
     #print(dict_reader)
@@ -54,7 +54,7 @@ for m in range(1, len(fix_text_list)-1):
     #print(dict_reader)
     l_s = dict_reader.items() # Получаем пары ключ:значение обработанного исходного словаря
     list_keys_values.append(list(l_s)) # И передаем их в список
-#print(list_keys_values)
+# print(list_keys_values)
 
 # Группировать и сортировать значения в списке list_keys_values
 # Ключ группировки и сортировки (По фамилии, н-р ('lastname', 'Усольцев')) 
