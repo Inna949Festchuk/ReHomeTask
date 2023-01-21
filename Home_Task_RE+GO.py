@@ -90,8 +90,6 @@ def fix(in_path:str, out_path:str) -> str:
         datawriter = csv.writer(f, delimiter=',')
         datawriter.writerow(dict_keys)
         datawriter.writerows(out_list)
-
-    file.close()
         
 def main():
     fix('phonebook_raw.csv', 'phonebook.csv')
