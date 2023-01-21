@@ -12,7 +12,7 @@ def fix(in_path:str, out_path:str) -> str:
         out_path - путь к выходному файлу .csv
     '''
 
-    # Удалить запятые вконце строк
+    # Удалить запятые в конце строк
     with open(in_path, 'r') as file:
     # file = open(in_path, 'r')
         text_list = file.read().split('\n')
