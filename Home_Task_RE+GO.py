@@ -87,7 +87,7 @@ for out_key in range(0, len(dict_keys) - 1):
 print(out_list)
 
 with open('phonebook.csv', 'w') as f:
-    datawriter = csv.writer(f, delimiter=';')
+    datawriter = csv.writer(f, delimiter=',')
     datawriter.writerow(dict_keys)
     datawriter.writerows(out_list)
 
