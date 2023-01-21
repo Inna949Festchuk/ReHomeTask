@@ -7,7 +7,7 @@ import re
 from itertools import groupby
 
 def fix(in_path:str, out_path:str) -> str:
-    '''Функция редактирования списка контактов
+    ''' Функция редактирования списка контактов
         in_path - путь к входному файлу .csv
         out_path - путь к выходному файлу .csv
     '''
@@ -41,17 +41,17 @@ def fix(in_path:str, out_path:str) -> str:
     for m in range(1, len(fix_text_list)):
         for dict_key in dict_keys:
             dict_reader.update({dict_key:fix_text_list[m][dict_keys.index(dict_key)]})
-        #print(dict_reader)
+        # print(dict_reader)
         for n in range(0,2): # разделяем строку на Ф,И,О
             ii = 0
             contacts = dict_reader.get(dict_keys[n]) # n-ый элемент из строки dict_reader исходного словаря
-            #print(contacts)
+            # print(contacts)
             split_contacts = contacts.split(' ') # разделдяем n-е элементы
-            #print(split_contacts)
+            # print(split_contacts)
             for element_string in split_contacts: # Проходим строку по разделенным элементам
                 dict_reader.update({dict_keys[n:][ii]: element_string}) # Добавляем элементы в исходный словарь
                 ii += 1
-        #print(dict_reader)
+        # print(dict_reader)
         l_s = dict_reader.items() # Получаем пары ключ:значение обработанного исходного словаря
         list_keys_values.append(list(l_s)) # И передаем их в список
     # print(list_keys_values)
